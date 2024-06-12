@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 22:52:07 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/11 23:02:11 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/12 08:59:58 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHONEBOOK_HPP
 
 #include "Contacts.hpp"
+#include "iomanip"
 
 class PhoneBook{
 	private:

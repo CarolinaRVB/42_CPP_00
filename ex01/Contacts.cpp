@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 22:52:17 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/11 23:01:35 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/12 12:56:38 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ void Contacts::get_info(Contacts &contacts){
 				break ;
 			}
 	}
+	// std::cout << std::endl;
 }
