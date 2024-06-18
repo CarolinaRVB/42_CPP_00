@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:39:30 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/17 19:08:07 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/18 10:26:55 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	PhoneBook::print_contacts(){
 	std::cout << CYAN << "|" << std::right << std::setw(10) << "Nickname" << "|" << RESET << std::endl;
 	std::cout << CYAN << "|||||||||||||||||||||||||||||||||||||||||||||" << RESET << std::endl;
 
-	for (int i = 0; (i <= ncontact && i < 8); i++){
-		std::cout << CYAN << "|" << RESET << std::right << std::setw(10) << i;
-		contacts[i].info_getter();}
+	for (int i = 0; (i < 8); i++){
+		if (!contacts[i].info_getter(i))
+			break ;}
 	
 	std::string index;
 	std::cout << std::endl;
@@ -48,17 +48,18 @@ void	PhoneBook::print_contacts(){
 		std::cout << YELLOW << "Choose a contact index from 0 to 7: " << RESET;
 		std::getline(std::cin, index);
 		if (index.length() != 1 || (index.length() == 1 && index.find_first_of("01234567") == std::string::npos)
-			|| (index.length() == 1 && !contacts[stoi(index)].info_index_getter())){
+			|| (index.length() == 1 && stoi(index) > ncontact)){
 			std::cout << RED << "WARNING: Invalid option" << RESET;
-			if (!contacts[0].info_index_getter()){
-				std::cout << RED << " -> No contacts in Phonebook!" << RESET << std::endl;
+			index.clear();
+			if (!contacts[0].info_index_0_getter()){
+				std::cout << RED << " -> Phonebook is empty: exiting ..." << RESET;
 				break ;
 			}
-			else
-				std::cout << std::endl;
-			index.clear();
-		}
+			std::cout << std::endl;
+		}		
 	}
+	if (!index.empty())
+		contacts[stoi(index)].info_index_getter(stoi(index));
 
 }
 
