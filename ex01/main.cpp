@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 22:55:52 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/17 18:42:27 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:49:49 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ int main()
 	while (s.empty()){
 		std::cout << std::endl << "> "  << GREEN << "Choose one option: 'ADD' 'SEARCH', 'EXIT': " << RESET;
 		std::getline(std::cin, s);
-		std::cout << std::endl;
+		std::cout << "\n";
 		if (s.compare("EXIT") == 0)
 			break ;
 		else if (s.compare("ADD") == 0){
 			Contacts contacts;
-			contacts.info_setter(contacts);
-			phonebook.add_info(contacts);
+			contacts.infoSetter();
+			phonebook.addInfo(contacts);
 		}
 		else if (s.compare("SEARCH") == 0){
-			phonebook.print_contacts();
+			phonebook.printContacts();
 		}
 		else
-			std::cout << RED << "WARNING: Invalid option: try 'SEARCH', 'ADD', 'EXIT'" << RESET << std::endl;		
+			std::cout << RED << "WARNING: Invalid option: try 'SEARCH', 'ADD', 'EXIT'\n" << RESET;		
 		s.clear();
 	}
-	std::cout << GREEN << "******  Closing Phonebook  ******" << RESET << std::endl;
-	return 0;
+	std::cout << GREEN << "******  Closing Phonebook  ******\n" << RESET;
+	return (0);
 }

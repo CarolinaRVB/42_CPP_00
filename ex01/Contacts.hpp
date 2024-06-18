@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 22:52:41 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/18 10:29:49 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:49:31 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ class Contacts{
 	std::string secret;
 	
 	public:
-	void	info_setter(Contacts &contacts);
-	int		info_getter(int index);
-	int		info_index_getter(int index);
-	int 	info_index_0_getter();
+	void	infoSetter();
+	int		infoGetter(int index);
+	void	infoIndexGetter(int index);
+	int 	infoIndexXChecker();
 };
 
 #endif

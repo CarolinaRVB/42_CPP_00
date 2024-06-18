@@ -6,13 +6,13 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:39:30 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/18 10:26:55 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:21:28 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-void	PhoneBook::get_next_index(){
+void	PhoneBook::getNextIndex(){
 	ncontact++;
 	if (ncontact == 8){
 		oldest++;
@@ -22,55 +22,58 @@ void	PhoneBook::get_next_index(){
 	}
 }
 
-void	PhoneBook::print_contacts(){
-	
-	
-	std::cout << YELLOW << "#############################################" << RESET << std::endl;
-	std::cout << YELLOW << "#                                           #" << RESET << std::endl;
-	std::cout << YELLOW << "#               Phone Book logs             #" << RESET << std::endl;
-	std::cout << YELLOW << "#                  crebelo-                 #" << RESET << std::endl;
-	std::cout << YELLOW << "#                                           #" << RESET << std::endl;
-	std::cout << YELLOW << "#############################################" << RESET << std::endl;
-	std::cout << CYAN << "|||||||||||||||||||||||||||||||||||||||||||||" << RESET << std::endl;
+void	PhoneBook::printContacts(){
+	std::cout << YELLOW << "#############################################\n" << RESET;
+	std::cout << YELLOW << "#                                           #\n" << RESET;
+	std::cout << YELLOW << "#               Phone Book logs             #\n" << RESET;
+	std::cout << YELLOW << "#                  crebelo-                 #\n" << RESET;
+	std::cout << YELLOW << "#                                           #\n" << RESET;
+	std::cout << YELLOW << "#############################################\n" << RESET;
+	std::cout << CYAN << "|||||||||||||||||||||||||||||||||||||||||||||\n" << RESET;
 	std::cout << CYAN << "|" << std::right << std::setw(10) << "Index" << RESET;
 	std::cout << CYAN << "|" << std::right << std::setw(10) << "First" << RESET;
 	std::cout << CYAN << "|" << std::right << std::setw(10) << "Last" << RESET;
-	std::cout << CYAN << "|" << std::right << std::setw(10) << "Nickname" << "|" << RESET << std::endl;
-	std::cout << CYAN << "|||||||||||||||||||||||||||||||||||||||||||||" << RESET << std::endl;
+	std::cout << CYAN << "|" << std::right << std::setw(10) << "Nickname" << "|\n" << RESET;
+	std::cout << CYAN << "|||||||||||||||||||||||||||||||||||||||||||||\n" << RESET;
 
 	for (int i = 0; (i < 8); i++){
-		if (!contacts[i].info_getter(i))
+		if (!contacts[i].infoGetter(i))
 			break ;}
-	
+
 	std::string index;
-	std::cout << std::endl;
+	std::cout << "\n";
 	while (index.empty()){
 		std::cout << YELLOW << "Choose a contact index from 0 to 7: " << RESET;
 		std::getline(std::cin, index);
-		if (index.length() != 1 || (index.length() == 1 && index.find_first_of("01234567") == std::string::npos)
-			|| (index.length() == 1 && stoi(index) > ncontact)){
+		if (index.length() != 1 || (index.length() == 1 && index.find_first_of("01234567") == std::string::npos)){
 			std::cout << RED << "WARNING: Invalid option" << RESET;
-			index.clear();
-			if (!contacts[0].info_index_0_getter()){
-				std::cout << RED << " -> Phonebook is empty: exiting ..." << RESET;
-				break ;
+			if (!contacts[0].infoIndexXChecker()){
+				std::cout << RED << " and phonebook is empty: exiting ...\n" << RESET;
+				return ;
 			}
-			std::cout << std::endl;
-		}		
+			index.clear();
+		}
+		else if (!contacts[stoi(index)].infoIndexXChecker()){
+			if (!contacts[0].infoIndexXChecker()){
+				std::cout << RED << "WARNING: Phonebook is empty: exiting ...\n" << RESET;
+				return ;
+			}
+			std::cout << RED << "WARNING: Empty contact: try again ..." << RESET;
+			index.clear();
+		}
+		std::cout << "\n";	
 	}
-	if (!index.empty())
-		contacts[stoi(index)].info_index_getter(stoi(index));
-
+	contacts[stoi(index)].infoIndexGetter(stoi(index));
 }
 
-void	PhoneBook::add_info(const Contacts &contact){
+void	PhoneBook::addInfo(const Contacts &contact){
 	if (empty){
 		empty = 0;
 		contacts[0] = contact;
 		oldest = 0;
 	}
 	else {
-		get_next_index();
+		getNextIndex();
 		if (ncontact == 8)
 			contacts[0] = contact;
 		else

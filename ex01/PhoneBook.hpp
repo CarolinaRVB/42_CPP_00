@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 22:52:07 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/17 18:41:19 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:12:57 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ class PhoneBook{
 
 	public:
 	int	oldest = 0;
-	int	index[8] = {0, 1, 2, 3, 4, 5, 6, 7};
 	int	ncontact = 0;
 	int	empty = 1;
 	
-	void	add_info(const Contacts &contact);
-	void	print_contacts();
-	void	get_next_index();
+	void	addInfo(const Contacts &contact);
+	void	printContacts();
+	void	getNextIndex();
 };
 
 
