@@ -6,11 +6,19 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:39:30 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/19 15:09:42 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:05:11 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+
+PhoneBook::PhoneBook(){
+	oldest_index = 0;
+	contact_index = -1;
+}
+
+PhoneBook::~PhoneBook(){
+}
 
 // This function adds a contact information to the contacts object in the Contacts array
 // of the PhoneBook class, which only contains 8 contacts max.
@@ -60,7 +68,7 @@ void	PhoneBook::printContacts(){
 			}
 			index.clear();
 		}
-		else if (!contacts[stoi(index)].infoIndexXChecker()){
+		else if (!contacts[customStoi(index)].infoIndexXChecker()){
 			if (!contacts[0].infoIndexXChecker()){
 				std::cout << RED << "WARNING: Phonebook is empty: exiting ...\n" << RESET;
 				return ;
@@ -70,5 +78,5 @@ void	PhoneBook::printContacts(){
 		}
 		std::cout << "\n";	
 	}
-	contacts[stoi(index)].infoIndexGetter(stoi(index));
+	contacts[customStoi(index)].infoIndexGetter(customStoi(index));
 }

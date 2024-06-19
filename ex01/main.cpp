@@ -6,17 +6,17 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 22:55:52 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/18 19:49:49 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:30:29 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contacts.hpp"
 #include "PhoneBook.hpp"
 
-int main()
+int main(void)
 {
-	PhoneBook phonebook;
-	std::string s;
+	PhoneBook	phonebook;
+	std::string	s;
 
 	while (s.empty()){
 		std::cout << std::endl << "> "  << GREEN << "Choose one option: 'ADD' 'SEARCH', 'EXIT': " << RESET;

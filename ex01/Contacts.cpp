@@ -6,33 +6,11 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 22:52:17 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/19 15:08:23 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:10:51 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
-
-// This functions checks if a string is composed of only spaces
-int	checkIfOnlySpaces(std::string input){
-	for (char ch : input){
-		if (!std::isspace(ch))
-			return (0) ;
-	}
-	return (1);
-}
-
-// This function checks if the inputs for the names are valid, meaning they can
-// only be composed of alphabetical characters
-int	checkNamesValidity(std::string input, std::string message){
-	for (char ch : input){
-		if (!std::isalpha(ch)){
-			std::cout << RED << "WARNING: " << message << " can only contain alphabetical characters\n" << RESET;
-			input.clear();
-			return (1) ;
-		}
-	}
-	return (0);
-}
 
 // This function is responsible for obtaining the inputs, parsing them and storing them in the object contacts
 // of the class Contacts. It's the setter function for private information
@@ -60,8 +38,8 @@ void Contacts::infoSetter(){
 	while (number.empty()){
 		std::cout << "> " << BLUE << "Please enter number: " << RESET;
 		std::getline(std::cin, number);
-		for (char ch : number)
-			if (!std::isdigit(ch)){
+		for (int i = 0; number[i]; i++)
+			if (!std::isdigit(number[i])){
 				std::cout << RED << "WARNING: Number can only contain digits\n" << RESET;
 				number.clear();
 				break ;

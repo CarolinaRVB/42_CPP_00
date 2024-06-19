@@ -6,7 +6,7 @@
 #    By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/10 15:16:19 by crebelo-          #+#    #+#              #
-#    Updated: 2024/06/11 23:04:07 by crebelo-         ###   ########.fr        #
+#    Updated: 2024/06/19 16:13:38 by crebelo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,14 @@ NAME := phonebook
 
 SRC := PhoneBook.cpp \
 	   Contacts.cpp \
+	   utils.cpp \
 	   main.cpp
 
 OBJ := $(SRC:.cpp=.o)
 
 CC := c++
 
-CFLAGS := -Wall -Wextra -Werror -I./ #-std=c++98
+CFLAGS := -Wall -Wextra -Werror -I./ -std=c++98
 
 GREEN := \033[0;32m
 

@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 22:52:41 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/18 19:49:31 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:12:37 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CONTACTS_HPP
 
 #include <iostream>
+#include <sstream>
 
 // ANSI escape codes for colors
 const std::string RED = "\033[31m";
@@ -27,17 +28,21 @@ const std::string RESET = "\033[0m";
 class Contacts{
 	
 	private:
-	std::string	number;
-	std::string firstname;
-	std::string lastname;
-	std::string nickname;
-	std::string secret;
+		std::string	number;
+		std::string firstname;
+		std::string lastname;
+		std::string nickname;
+		std::string secret;
 	
 	public:
-	void	infoSetter();
-	int		infoGetter(int index);
-	void	infoIndexGetter(int index);
-	int 	infoIndexXChecker();
+		void	infoSetter();
+		int		infoGetter(int index);
+		void	infoIndexGetter(int index);
+		int 	infoIndexXChecker();
 };
+
+int	checkIfOnlySpaces(std::string input);
+int	checkNamesValidity(std::string input, std::string message);
+int customStoi(std::string input);
 
 #endif
