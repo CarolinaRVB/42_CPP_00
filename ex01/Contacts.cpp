@@ -6,12 +6,13 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 22:52:17 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/18 20:28:46 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:08:23 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
+// This functions checks if a string is composed of only spaces
 int	checkIfOnlySpaces(std::string input){
 	for (char ch : input){
 		if (!std::isspace(ch))
@@ -20,6 +21,8 @@ int	checkIfOnlySpaces(std::string input){
 	return (1);
 }
 
+// This function checks if the inputs for the names are valid, meaning they can
+// only be composed of alphabetical characters
 int	checkNamesValidity(std::string input, std::string message){
 	for (char ch : input){
 		if (!std::isalpha(ch)){
@@ -31,6 +34,8 @@ int	checkNamesValidity(std::string input, std::string message){
 	return (0);
 }
 
+// This function is responsible for obtaining the inputs, parsing them and storing them in the object contacts
+// of the class Contacts. It's the setter function for private information
 void Contacts::infoSetter(){
 	while (firstname.empty() || checkNamesValidity(firstname, "Firstname")){
 		std::cout << "> " << BLUE << "Please enter first name: " << RESET;
@@ -64,6 +69,8 @@ void Contacts::infoSetter(){
 	}
 }
 
+// This function is used in the printContacts function and serves to check if each contacts variable has more
+// than 10 characters, if so it prints the shortened version, otherwise it prints the original
 int	Contacts::infoGetter(int index){
 	if (firstname.empty())
 		return (0);
@@ -83,6 +90,7 @@ int	Contacts::infoGetter(int index){
 	return (1);
 }
 
+// This function is used to obtained each variable input of the contacts object
 void	Contacts::infoIndexGetter(int index){
 	std::cout << CYAN << "Index: " << RESET << index << std::endl;
 	std::cout << CYAN << "First name: " << RESET << firstname << std::endl;
@@ -92,6 +100,8 @@ void	Contacts::infoIndexGetter(int index){
 	std::cout << CYAN << "Darkest secret: " << RESET << secret << std::endl;
 }
 
+// This function is a getter function of the Contacts class to see if the current object contacts
+// is not filled.
 int	Contacts::infoIndexXChecker(){
 	if (firstname.empty())
 		return (0);

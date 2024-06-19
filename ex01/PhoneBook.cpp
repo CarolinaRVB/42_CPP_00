@@ -6,22 +6,29 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:39:30 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/18 19:21:28 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:09:42 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-void	PhoneBook::getNextIndex(){
-	ncontact++;
-	if (ncontact == 8){
-		oldest++;
-		if (oldest == 8)
-			oldest = 0;
-		ncontact = 0;
-	}
+// This function adds a contact information to the contacts object in the Contacts array
+// of the PhoneBook class, which only contains 8 contacts max.
+// Hence, through the modulo operator we can safely add a new contact to the next index.
+void	PhoneBook::addInfo(const Contacts &contact){
+	contact_index = (contact_index + 1) % 8;
+	if (contact_index == 0)
+		oldest_index = (oldest_index + 1) % 8;
+	contacts[contact_index % 8] = contact;
 }
 
+// This function prints the contacts logs in 3 steps:
+// 		1: Prints a header with a title and the columns names
+//		2: Fills each row with the information of the existing contact
+//			if the information is bigger than 10 characters, it shortens it
+//		3: Asks the user to select a contact index and parses the input -> deals with 
+//			wrong entries (above index 7 and bellow index 0), non numeric indexes,
+//			non existing indexes
 void	PhoneBook::printContacts(){
 	std::cout << YELLOW << "#############################################\n" << RESET;
 	std::cout << YELLOW << "#                                           #\n" << RESET;
@@ -64,19 +71,4 @@ void	PhoneBook::printContacts(){
 		std::cout << "\n";	
 	}
 	contacts[stoi(index)].infoIndexGetter(stoi(index));
-}
-
-void	PhoneBook::addInfo(const Contacts &contact){
-	if (empty){
-		empty = 0;
-		contacts[0] = contact;
-		oldest = 0;
-	}
-	else {
-		getNextIndex();
-		if (ncontact == 8)
-			contacts[0] = contact;
-		else
-			contacts[ncontact] = contact;
-	}
 }
