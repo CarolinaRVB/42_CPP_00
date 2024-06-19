@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 22:52:41 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/12 13:00:43 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:49:31 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,19 @@ const std::string CYAN = "\033[36m";
 const std::string RESET = "\033[0m";
 
 class Contacts{
-	// private:
-	public:
+	
+	private:
 	std::string	number;
 	std::string firstname;
 	std::string lastname;
 	std::string nickname;
 	std::string secret;
 	
-	void	get_info(Contacts &contacts);
+	public:
+	void	infoSetter();
+	int		infoGetter(int index);
+	void	infoIndexGetter(int index);
+	int 	infoIndexXChecker();
 };
-
 
 #endif

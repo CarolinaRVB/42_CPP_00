@@ -6,97 +6,69 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:39:30 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/12 12:56:22 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:09:42 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-void	PhoneBook::get_next_index(PhoneBook &phonebook){
-	phonebook.ncontact++;
-	if (phonebook.ncontact == 8){
-	{
-		phonebook.oldest++;
-		if (phonebook.oldest == 8)
-			phonebook.oldest = 0;
-		phonebook.ncontact = 0;
-	}
-	}
+// This function adds a contact information to the contacts object in the Contacts array
+// of the PhoneBook class, which only contains 8 contacts max.
+// Hence, through the modulo operator we can safely add a new contact to the next index.
+void	PhoneBook::addInfo(const Contacts &contact){
+	contact_index = (contact_index + 1) % 8;
+	if (contact_index == 0)
+		oldest_index = (oldest_index + 1) % 8;
+	contacts[contact_index % 8] = contact;
 }
 
-void	PhoneBook::print_contacts(const PhoneBook &phonebook){
-	
-	
-	std::cout << YELLOW << "#############################################" << RESET << std::endl;
-	std::cout << YELLOW << "#                                           #" << RESET << std::endl;
-	std::cout << YELLOW << "#               Phone Book logs             #" << RESET << std::endl;
-	std::cout << YELLOW << "#                  crebelo-                 #" << RESET << std::endl;
-	std::cout << YELLOW << "#                                           #" << RESET << std::endl;
-	std::cout << YELLOW << "#############################################" << RESET << std::endl;
-	std::cout << CYAN << "|||||||||||||||||||||||||||||||||||||||||||||" << RESET << std::endl;
+// This function prints the contacts logs in 3 steps:
+// 		1: Prints a header with a title and the columns names
+//		2: Fills each row with the information of the existing contact
+//			if the information is bigger than 10 characters, it shortens it
+//		3: Asks the user to select a contact index and parses the input -> deals with 
+//			wrong entries (above index 7 and bellow index 0), non numeric indexes,
+//			non existing indexes
+void	PhoneBook::printContacts(){
+	std::cout << YELLOW << "#############################################\n" << RESET;
+	std::cout << YELLOW << "#                                           #\n" << RESET;
+	std::cout << YELLOW << "#               Phone Book logs             #\n" << RESET;
+	std::cout << YELLOW << "#                  crebelo-                 #\n" << RESET;
+	std::cout << YELLOW << "#                                           #\n" << RESET;
+	std::cout << YELLOW << "#############################################\n" << RESET;
+	std::cout << CYAN << "|||||||||||||||||||||||||||||||||||||||||||||\n" << RESET;
 	std::cout << CYAN << "|" << std::right << std::setw(10) << "Index" << RESET;
 	std::cout << CYAN << "|" << std::right << std::setw(10) << "First" << RESET;
 	std::cout << CYAN << "|" << std::right << std::setw(10) << "Last" << RESET;
-	std::cout << CYAN << "|" << std::right << std::setw(10) << "Nickname" << "|" << RESET << std::endl;
-	std::cout << CYAN << "|||||||||||||||||||||||||||||||||||||||||||||" << RESET << std::endl;
+	std::cout << CYAN << "|" << std::right << std::setw(10) << "Nickname" << "|\n" << RESET;
+	std::cout << CYAN << "|||||||||||||||||||||||||||||||||||||||||||||\n" << RESET;
 
-	for (int i = 0; (i < 8 && !contacts[i].firstname.empty()); i++) {
-		std::cout << CYAN << "|" << RESET << std::right << std::setw(10) << phonebook.index[i];
-		if (contacts[i].firstname.length() > 10)
-			std::cout << CYAN << "|" << RESET << std::right << std::setw(10) << contacts[i].firstname.substr(0, 9) + ".";
-		else
-			std::cout << CYAN << "|" << RESET << std::right << std::setw(10) << contacts[i].firstname;
-		if (contacts[i].lastname.length() > 10)
-			std::cout << CYAN << "|" << RESET << std::right << std::setw(10) << contacts[i].lastname.substr(0, 9) + ".";
-		else
-			std::cout << CYAN << "|" << RESET << std::right << std::setw(10) << contacts[i].lastname;
-		if (contacts[i].lastname.length() > 10)
-			std::cout << CYAN << "|" << RESET << std::right << std::setw(10) << contacts[i].nickname.substr(0, 9) + ".";
-		else
-			std::cout << CYAN << "|" << RESET << std::right << std::setw(10) << contacts[i].nickname << CYAN << "|" << RESET << std::endl;
-	}
-	
+	for (int i = 0; (i < 8); i++){
+		if (!contacts[i].infoGetter(i))
+			break ;}
+
 	std::string index;
-	std::cout << std::endl;
+	std::cout << "\n";
 	while (index.empty()){
 		std::cout << YELLOW << "Choose a contact index from 0 to 7: " << RESET;
 		std::getline(std::cin, index);
-		if (index.length() != 1 || (index.length() == 1 && index.find_first_of("01234567") == std::string::npos)
-			|| (index.length() == 1 && contacts[stoi(index)].firstname.empty())){
+		if (index.length() != 1 || (index.length() == 1 && index.find_first_of("01234567") == std::string::npos)){
 			std::cout << RED << "WARNING: Invalid option" << RESET;
-			if (contacts[0].firstname.empty()){
-				std::cout << RED << " -> No contacts in Phonebook!" << RESET << std::endl;
-				break ;
+			if (!contacts[0].infoIndexXChecker()){
+				std::cout << RED << " and phonebook is empty: exiting ...\n" << RESET;
+				return ;
 			}
-			else
-				std::cout << std::endl;
 			index.clear();
 		}
-		else{
-			std::cout << std::endl << CYAN << "Index: " << RESET << index << std::endl;
-			std::cout << CYAN << "First name: " << RESET << contacts[stoi(index)].firstname << std::endl;
-			std::cout << CYAN << "Last name: " << RESET << contacts[stoi(index)].lastname << std::endl;
-			std::cout << CYAN << "Nickname: " << RESET << contacts[stoi(index)].nickname << std::endl;
-			std::cout << CYAN << "Number: " << RESET << contacts[stoi(index)].number << std::endl;
-			std::cout << CYAN << "Darkest secret: " << RESET << contacts[stoi(index)].secret << std::endl;	
+		else if (!contacts[stoi(index)].infoIndexXChecker()){
+			if (!contacts[0].infoIndexXChecker()){
+				std::cout << RED << "WARNING: Phonebook is empty: exiting ...\n" << RESET;
+				return ;
+			}
+			std::cout << RED << "WARNING: Empty contact: try again ..." << RESET;
+			index.clear();
 		}
+		std::cout << "\n";	
 	}
-
-}
-
-void	PhoneBook::add_info(const Contacts &contact, PhoneBook &phonebook){
-	if (phonebook.empty){
-		phonebook.empty = 0;
-		phonebook.contacts[0] = contact;
-		phonebook.oldest = 0 ;
-	}
-	else {
-		get_next_index(phonebook);
-		if (ncontact == 8){
-			phonebook.contacts[0] = contact;
-		}
-		else{
-			phonebook.contacts[phonebook.ncontact] = contact;
-		}
-	}
+	contacts[stoi(index)].infoIndexGetter(stoi(index));
 }
