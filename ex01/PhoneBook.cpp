@@ -39,9 +39,7 @@ void	PhoneBook::addInfo(const Contacts &contact){
 //			non existing indexes
 void	PhoneBook::printContacts(){
 	std::cout << YELLOW << "#############################################\n" << RESET;
-	std::cout << YELLOW << "#                                           #\n" << RESET;
-	std::cout << YELLOW << "#               Phone Book logs             #\n" << RESET;
-	std::cout << YELLOW << "#                  crebelo-                 #\n" << RESET;
+	std::cout << YELLOW << "#       PhoneBook Contacts; crebelo-        #\n" << RESET;
 	std::cout << YELLOW << "#                                           #\n" << RESET;
 	std::cout << YELLOW << "#############################################\n" << RESET;
 	std::cout << CYAN << "|||||||||||||||||||||||||||||||||||||||||||||\n" << RESET;
@@ -52,7 +50,7 @@ void	PhoneBook::printContacts(){
 	std::cout << CYAN << "|||||||||||||||||||||||||||||||||||||||||||||\n" << RESET;
 
 	for (int i = 0; (i < 8); i++){
-		if (!contacts[i].infoGetter(i))
+		if (!contacts[i].getInfo(i))
 			break ;}
 
 	std::string index;
@@ -62,14 +60,14 @@ void	PhoneBook::printContacts(){
 		std::getline(std::cin, index);
 		if (index.length() != 1 || (index.length() == 1 && index.find_first_of("01234567") == std::string::npos)){
 			std::cout << RED << "WARNING: Invalid option" << RESET;
-			if (!contacts[0].infoIndexXChecker()){
+			if (!contacts[0].getInfoIndexX()){
 				std::cout << RED << " and phonebook is empty: exiting ...\n" << RESET;
 				return ;
 			}
 			index.clear();
 		}
-		else if (!contacts[customStoi(index)].infoIndexXChecker()){
-			if (!contacts[0].infoIndexXChecker()){
+		else if (!contacts[customStoi(index)].getInfoIndexX()){
+			if (!contacts[0].getInfoIndexX()){
 				std::cout << RED << "WARNING: Phonebook is empty: exiting ...\n" << RESET;
 				return ;
 			}
@@ -78,5 +76,5 @@ void	PhoneBook::printContacts(){
 		}
 		std::cout << "\n";	
 	}
-	contacts[customStoi(index)].infoIndexGetter(customStoi(index));
+	contacts[customStoi(index)].getInfoIndex(customStoi(index));
 }

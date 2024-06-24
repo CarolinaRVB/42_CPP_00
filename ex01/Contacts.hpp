@@ -28,17 +28,17 @@ const std::string RESET = "\033[0m";
 class Contacts{
 	
 	private:
-		std::string	number;
-		std::string firstname;
-		std::string lastname;
-		std::string nickname;
-		std::string secret;
+		std::string	m_number;
+		std::string m_firstname;
+		std::string m_lastname;
+		std::string m_nickname;
+		std::string m_secret;
 	
 	public:
-		void	infoSetter();
-		int		infoGetter(int index);
-		void	infoIndexGetter(int index);
-		int 	infoIndexXChecker();
+		void	setInfo();
+		int		getInfo(int index);
+		void	getInfoIndex(int index);
+		int 	getInfoIndexX();
 };
 
 int	checkIfOnlySpaces(std::string input);

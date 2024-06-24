@@ -26,7 +26,7 @@ int main(void)
 			break ;
 		else if (s.compare("ADD") == 0){
 			Contacts contacts;
-			contacts.infoSetter();
+			contacts.setInfo();
 			phonebook.addInfo(contacts);
 		}
 		else if (s.compare("SEARCH") == 0){
