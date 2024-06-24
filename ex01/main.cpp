@@ -6,15 +6,21 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 22:55:52 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/19 15:30:29 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/24 22:49:25 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contacts.hpp"
 #include "PhoneBook.hpp"
 
-int main(void)
+int main(int argc, char **argv)
 {
+	(void)argv;
+	if (argc != 1){
+		std::cout << RED << "ERROR: no arguments allowed" << RESET << std::endl;
+		return (1);
+	}
+
 	PhoneBook	phonebook;
 	std::string	s;
 

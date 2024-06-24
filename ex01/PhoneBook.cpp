@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:39:30 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/19 16:05:11 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/24 22:45:34 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	PhoneBook::addInfo(const Contacts &contact){
 //			non existing indexes
 void	PhoneBook::printContacts(){
 	std::cout << YELLOW << "#############################################\n" << RESET;
+	std::cout << YELLOW << "#                                           #\n" << RESET;
 	std::cout << YELLOW << "#       PhoneBook Contacts; crebelo-        #\n" << RESET;
 	std::cout << YELLOW << "#                                           #\n" << RESET;
 	std::cout << YELLOW << "#############################################\n" << RESET;

@@ -6,7 +6,7 @@
 /*   By: crebelo- <crebelo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 22:52:17 by crebelo-          #+#    #+#             */
-/*   Updated: 2024/06/19 16:10:51 by crebelo-         ###   ########.fr       */
+/*   Updated: 2024/06/24 22:44:00 by crebelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	Contacts::getInfo(int index){
 		std::cout << CYAN << "|" << RESET << std::right << std::setw(10) << m_lastname.substr(0, 9) + ".";
 	else
 		std::cout << CYAN << "|" << RESET << std::right << std::setw(10) << m_lastname;
-	if (m_lastname.length() > 10)
-		std::cout << CYAN << "|" << RESET << std::right << std::setw(10) << m_nickname.substr(0, 9) + ".";
+	if (m_nickname.length() > 10)
+		std::cout << CYAN << "|" << RESET << std::right << std::setw(10) << m_nickname.substr(0, 9) + "." << CYAN << "|\n" << RESET;
 	else
 		std::cout << CYAN << "|" << RESET << std::right << std::setw(10) << m_nickname << CYAN << "|\n" << RESET;
 	return (1);
